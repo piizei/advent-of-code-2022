@@ -23,3 +23,13 @@ pub fn read_rps_list() -> Vec<String> {
     fs::read_to_string("./input-day-2.txt").expect("Should have been able to read the file");
     return contents.split("\n").map(|s| s.to_string()).collect::<Vec<_>>();
 }
+
+pub fn read_moves_list() -> Vec<Vec<u32>> {
+    let contents =
+    fs::read_to_string("./input-day-5.txt").expect("Should have been able to read the file");
+    return contents.lines().map(|l| parse_moves(l)).collect::<Vec<_>>();
+}
+
+pub fn parse_moves(input: &str) -> Vec<u32> {
+    return input.split(" ").map(|i| i.parse::<u32>().unwrap()).collect::<Vec<_>>();
+}
