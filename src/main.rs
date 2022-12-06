@@ -16,7 +16,8 @@ fn main() {
     //day2();
     //day5_1();
     //day5_2();
-    day6();
+    //day6();
+    day6_2();
 }
 
 fn day1() {
@@ -145,7 +146,22 @@ fn day5_2() {
 }
 
 fn day6() {
-    let mut scanner = Scanner { buffer: vec!['m'] };
+    let mut scanner = Scanner { buffer: vec!['m'], buffer_length: 4 };
+    let mut count = 0;
+    for char in get_day_6() {
+        count += 1;
+        scanner.add(char);
+        if (scanner.unique()) {
+            println!("index: {}", count);
+            println!("buffer: {:?}", scanner.buffer);
+            return;
+        }
+
+    }
+}
+
+fn day6_2() {
+    let mut scanner = Scanner { buffer: vec!['m'], buffer_length: 14 };
     let mut count = 0;
     for char in get_day_6() {
         count += 1;
