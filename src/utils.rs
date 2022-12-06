@@ -47,3 +47,8 @@ pub fn get_day_5_stacks() -> HashMap<u32, Vec<char>> {
     stacks.insert(9, "WGDNPL".chars().collect());
     return stacks;
 }
+
+pub fn get_day_6() ->Vec<char> {
+    let message = fs::read_to_string("./input-day-6.txt").expect("Should have been able to read the file");
+    return message.chars().collect();
+}

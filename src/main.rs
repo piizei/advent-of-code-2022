@@ -1,9 +1,11 @@
 mod elf;
 mod stacks;
+mod stream_scanner;
 
 use std::collections::HashMap;
 
-use utils::read_rps_list;
+use stream_scanner::Scanner;
+use utils::{read_rps_list, get_day_6};
 
 use crate::utils::{read_elf_list, read_moves_list, parse_moves, get_day_5_stacks};
 mod utils;
@@ -13,7 +15,8 @@ fn main() {
     // day1();
     //day2();
     //day5_1();
-    day5_2();
+    //day5_2();
+    day6();
 }
 
 fn day1() {
@@ -139,4 +142,19 @@ fn day5_2() {
     println!("Stack: {:?}", stacks.get_mut(&8).unwrap().pop().unwrap());
     println!("Stack: {:?}", stacks.get_mut(&9).unwrap().pop().unwrap());
 
+}
+
+fn day6() {
+    let mut scanner = Scanner { buffer: vec!['m'] };
+    let mut count = 0;
+    for char in get_day_6() {
+        count += 1;
+        scanner.add(char);
+        if (scanner.unique()) {
+            println!("index: {}", count);
+            println!("buffer: {:?}", scanner.buffer);
+            return;
+        }
+
+    }
 }
