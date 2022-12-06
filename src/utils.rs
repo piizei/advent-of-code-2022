@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, collections::HashMap};
 use crate::elf::Elf;
 
 pub fn read_elf_list() -> Vec<Elf> {
@@ -32,4 +32,18 @@ pub fn read_moves_list() -> Vec<Vec<u32>> {
 
 pub fn parse_moves(input: &str) -> Vec<u32> {
     return input.split(" ").map(|i| i.parse::<u32>().unwrap()).collect::<Vec<_>>();
+}
+
+pub fn get_day_5_stacks() -> HashMap<u32, Vec<char>> {
+    let mut stacks:HashMap<u32, Vec<char>> = HashMap::new();
+    stacks.insert(1, "LNWTD".chars().collect());
+    stacks.insert(2, "CPH".chars().collect());
+    stacks.insert(3, "WPHNDGMJ".chars().collect());
+    stacks.insert(4, "CWSNTQL".chars().collect());
+    stacks.insert(5, "PHCN".chars().collect());
+    stacks.insert(6, "THNDMWQB".chars().collect());
+    stacks.insert(7, "MBRJGSL".chars().collect());
+    stacks.insert(8, "ZNWGVBRT".chars().collect());
+    stacks.insert(9, "WGDNPL".chars().collect());
+    return stacks;
 }

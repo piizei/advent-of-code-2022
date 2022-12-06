@@ -5,14 +5,15 @@ use std::collections::HashMap;
 
 use utils::read_rps_list;
 
-use crate::utils::{read_elf_list, read_moves_list, parse_moves};
+use crate::utils::{read_elf_list, read_moves_list, parse_moves, get_day_5_stacks};
 mod utils;
 
 
 fn main() {
     // day1();
     //day2();
-    day5_1();
+    //day5_1();
+    day5_2();
 }
 
 fn day1() {
@@ -76,16 +77,7 @@ fn day2() {
 
 fn day5_1() {
     // Stacks for the cranes
-    let mut stacks:HashMap<u32, Vec<char>> = HashMap::new();
-    stacks.insert(1, "LNWTD".chars().collect());
-    stacks.insert(2, "CPH".chars().collect());
-    stacks.insert(3, "WPHNDGMJ".chars().collect());
-    stacks.insert(4, "CWSNTQL".chars().collect());
-    stacks.insert(5, "PHCN".chars().collect());
-    stacks.insert(6, "THNDMWQB".chars().collect());
-    stacks.insert(7, "MBRJGSL".chars().collect());
-    stacks.insert(8, "ZNWGVBRT".chars().collect());
-    stacks.insert(9, "WGDNPL".chars().collect());
+    let mut stacks = get_day_5_stacks();
 
     let moves = read_moves_list();
 
@@ -102,6 +94,38 @@ fn day5_1() {
             println!("C: {:?}", c);
             stacks.get_mut(&to).unwrap().push(c);
         }   
+
+    }
+
+    println!("Stack: {:?}", stacks.get_mut(&1).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&2).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&3).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&4).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&5).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&6).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&7).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&8).unwrap().pop().unwrap());
+    println!("Stack: {:?}", stacks.get_mut(&9).unwrap().pop().unwrap());
+
+}
+
+fn day5_2() {
+    // Stacks for the cranes
+    let mut stacks = get_day_5_stacks();
+
+    let moves = read_moves_list();
+
+    for m in moves {
+        let amount = m[0];
+        let from = m[1];
+        let to = m[2];
+        let mut origin_stack = stacks.get(&from).unwrap().clone();
+        let mut target_stack = stacks.get(&to).unwrap().clone();  
+        let range = origin_stack.split_off(origin_stack.len() - amount as usize) ;
+        target_stack.extend(range.iter());
+        stacks.insert(from, origin_stack);
+        stacks.insert(to, target_stack);
+
 
     }
 
