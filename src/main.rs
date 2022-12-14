@@ -9,6 +9,8 @@ use utils::{read_rps_list, get_day_6};
 
 use crate::utils::{read_elf_list, read_moves_list, parse_moves, get_day_5_stacks};
 mod utils;
+mod day12;
+use day12::day12;
 
 
 fn main() {
@@ -17,7 +19,8 @@ fn main() {
     //day5_1();
     //day5_2();
     //day6();
-    day6_2();
+    //day6_2();
+    day12();
 }
 
 fn day1() {
