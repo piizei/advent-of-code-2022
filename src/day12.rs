@@ -114,12 +114,12 @@ fn neighbours(pos: &Pos, mat: &Matrix<i32>) -> Vec<(Pos, usize)> {
     return neighbours;
 }
 
-fn get_cost(pos: &Pos, mat: &Matrix<i32>, original_height: i32) -> usize { 
-    let height = get_height(pos, mat);
-    if (height - original_height) > 1 {
-        return 1000;
+fn get_cost(pos: &Pos, mat: &Matrix<i32>, original_height: i32) -> usize {
+    let diff =  get_height(pos, mat) - original_height;
+    match diff < 2 {
+        true => 1,
+        false => 1000        
     }
-    return 1;
 }
 
 fn get_height(pos: &Pos, mat: &Matrix<i32>) -> i32 {
